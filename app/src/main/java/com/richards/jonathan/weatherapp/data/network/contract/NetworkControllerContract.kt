@@ -5,5 +5,5 @@ import kotlinx.coroutines.Deferred
 import retrofit2.Response
 
 interface NetworkControllerContract {
-    fun getWeather(): Deferred<Response<WeatherInfo>>
+    fun getWeather(lat: Long, lon: Long): Deferred<Response<WeatherInfo>>
 }

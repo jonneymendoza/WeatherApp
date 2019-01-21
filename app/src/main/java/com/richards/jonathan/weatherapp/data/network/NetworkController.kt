@@ -28,8 +28,8 @@ class NetworkController constructor(private val networkHelper: NetworkHelperCont
         return retrofit.create(WeatherApi::class.java)
     }
 
-    override fun getWeather(): Deferred<Response<WeatherInfo>> {
-        return weatherApi().getWeather()
+    override fun getWeather(lat: Long, lon: Long): Deferred<Response<WeatherInfo>> {
+        return weatherApi().getWeather(lat,lon, BuildConfig.APP_ID)
     }
 
 

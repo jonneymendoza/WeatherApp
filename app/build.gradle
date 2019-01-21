@@ -15,7 +15,9 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        buildConfigField "String", "BASE_URL", "\"https://api.themoviedb.org/3/\""
+        buildConfigField "String", "BASE_URL", "\"https://api.openweathermap.org/data/2.5/\""
+        buildConfigField "String", "APP_ID", "\"e5c7a13c700bc99ded823ad9a01d03d9\""
+
     }
     buildTypes {
         release {

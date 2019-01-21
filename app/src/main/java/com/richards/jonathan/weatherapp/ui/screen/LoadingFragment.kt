@@ -8,7 +8,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.Observer
 import com.richards.jonathan.weatherapp.R
+import com.richards.jonathan.weatherapp.data.LocationState
+import com.richards.jonathan.weatherapp.data.network.entity.Status
 import com.richards.jonathan.weatherapp.ui.BaseFragment
 import com.richards.jonathan.weatherapp.ui.type.Screen
 import kotlinx.android.synthetic.main.loading_fragment.*
@@ -30,6 +33,26 @@ class LoadingFragment : BaseFragment() {
     }
 
     private fun initiateView() {
+        
+        //fetch location
+        activity.viewModel.getCurrentLocation().observe(this, Observer { userLocation ->
+            if (userLocation.state == LocationState.SUCCESS) {
+                //Fetch weather
+                activity.viewModel.fetchCurrentWeather(
+                    userLocation.location!!.latitude.toLong(),
+                    userLocation.location!!.longitude.toLong()
+                ).observe(this, Observer { resources ->
+                    if (resources.status == Status.SUCCESS && resources.data != null) {
+                        activity.goTo(Screen.CURRENT_WEATHER_SCREEN)
+                    } else if (resources.status == Status.ERROR) {
+                        activity.goTo(Screen.ERROR_LOADING_SCREEN)
+                    }
+                })
+            } else if (userLocation.state == LocationState.ERROR) {
+                activity.goTo(Screen.ERROR_LOADING_SCREEN)
+            }
+
+        })
 
     }
 
@@ -51,6 +74,8 @@ class LoadingFragment : BaseFragment() {
                 activity, arrayOf(android.Manifest.permission.ACCESS_COARSE_LOCATION),
                 MY_PERMISSION_ACCESS_COURSE_LOCATION
             )
+        } else {
+            initiateView()
         }
     }
 

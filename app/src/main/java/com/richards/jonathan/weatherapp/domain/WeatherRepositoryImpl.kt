@@ -11,11 +11,14 @@ import com.richards.jonathan.weatherapp.data.network.contract.NetworkControllerC
 import com.richards.jonathan.weatherapp.data.network.entity.Resource
 import java.nio.charset.Charset
 
-class WeatherRepositoryImpl constructor(val context: Context, val networkController: NetworkControllerContract) :
-    WeatherRepository {
+class WeatherRepositoryImpl constructor(
+    private val context: Context,
+    private val networkController: NetworkControllerContract
+) : WeatherRepository {
 
     inline fun <reified T> Gson.fromJson(json: String) = this.fromJson<T>(json, object : TypeToken<T>() {}.type)
 
+    //TODO: did not need this after all as i just passed the lat and lon
     override fun getCityId(cityName: String): MutableLiveData<String> {
         val cityId = MutableLiveData<String>()
 
@@ -34,8 +37,8 @@ class WeatherRepositoryImpl constructor(val context: Context, val networkControl
         return cityId
     }
 
-    override fun getWeatherInfo(cityId: String): MutableLiveData<Resource<WeatherInfo>> {
-        return SingleCallHandler<WeatherInfo>().makeCall(networkController.getWeather())
+    override fun getWeatherInfo(lat: Long, lon: Long): MutableLiveData<Resource<WeatherInfo>> {
+        return SingleCallHandler<WeatherInfo>().makeCall(networkController.getWeather(lat, lon))
     }
 
     private fun getJsonString(): String {

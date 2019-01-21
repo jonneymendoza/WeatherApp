@@ -1,7 +1,7 @@
 package com.richards.jonathan.weatherapp.data.model
 
 data class WeatherInfo(
-    val weather: Weather,
+    val weather: List<Weather>,
     val main: MainWeather,
     val wind: Wind
 )
