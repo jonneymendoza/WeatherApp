@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">WeatherApp</string>
+    <string name="loading_text">Connecting to the weather system</string>
 </resources>

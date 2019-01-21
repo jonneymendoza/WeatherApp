@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animation-list xmlns:android="http://schemas.android.com/apk/res/android"
+    android:oneshot="false">
+    <item
+        android:drawable="@drawable/icons_rain"
+        android:duration="200" />
+    <item
+        android:drawable="@drawable/icons_snow"
+        android:duration="200" />
+    <item
+        android:drawable="@drawable/icons_sun"
+        android:duration="200" />
+    <item
+        android:drawable="@drawable/icons_storm"
+        android:duration="200" />
+    <item
+        android:drawable="@drawable/icons_partly_cloudy_day"
+        android:duration="200" />
+    <item
+        android:drawable="@drawable/icons_windy_weather"
+        android:duration="200" />
+</animation-list>
