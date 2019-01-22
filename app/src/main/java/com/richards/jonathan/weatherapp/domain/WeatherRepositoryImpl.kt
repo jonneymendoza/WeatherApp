@@ -1,6 +1,5 @@
 package com.richards.jonathan.weatherapp.domain
 
-import android.content.Context
 import androidx.lifecycle.MutableLiveData
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
@@ -11,10 +10,7 @@ import com.richards.jonathan.weatherapp.data.network.contract.NetworkControllerC
 import com.richards.jonathan.weatherapp.data.network.entity.Resource
 import java.nio.charset.Charset
 
-class WeatherRepositoryImpl constructor(
-    private val context: Context,
-    private val networkController: NetworkControllerContract
-) : WeatherRepository {
+class WeatherRepositoryImpl constructor(private val networkController: NetworkControllerContract) : WeatherRepository {
 
     inline fun <reified T> Gson.fromJson(json: String) = this.fromJson<T>(json, object : TypeToken<T>() {}.type)
 
