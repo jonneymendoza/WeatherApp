@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import com.richards.jonathan.weatherapp.R
@@ -33,14 +32,14 @@ class LoadingFragment : BaseFragment() {
     }
 
     private fun initiateView() {
-        
+
         //fetch location
         activity.viewModel.getCurrentLocation().observe(this, Observer { userLocation ->
             if (userLocation.state == LocationState.SUCCESS) {
                 //Fetch weather
                 activity.viewModel.fetchCurrentWeather(
-                    userLocation.location!!.latitude.toLong(),
-                    userLocation.location!!.longitude.toLong()
+                    userLocation.lat,
+                    userLocation.lon
                 ).observe(this, Observer { resources ->
                     if (resources.status == Status.SUCCESS && resources.data != null) {
                         activity.goTo(Screen.CURRENT_WEATHER_SCREEN)
@@ -64,14 +63,12 @@ class LoadingFragment : BaseFragment() {
     }
 
     private fun checkPermissions() {
-        if (ContextCompat.checkSelfPermission(
-                activity,
-                android.Manifest.permission.ACCESS_COARSE_LOCATION
-            ) != PackageManager.PERMISSION_GRANTED
+        if (ContextCompat.checkSelfPermission(activity, android.Manifest.permission.ACCESS_COARSE_LOCATION)
+            != PackageManager.PERMISSION_GRANTED
         ) {
 
-            ActivityCompat.requestPermissions(
-                activity, arrayOf(android.Manifest.permission.ACCESS_COARSE_LOCATION),
+            requestPermissions(
+                arrayOf(android.Manifest.permission.ACCESS_COARSE_LOCATION),
                 MY_PERMISSION_ACCESS_COURSE_LOCATION
             )
         } else {

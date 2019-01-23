@@ -5,6 +5,6 @@ import com.richards.jonathan.weatherapp.data.model.WeatherInfo
 import com.richards.jonathan.weatherapp.data.network.entity.Resource
 
 interface WeatherRepository {
-    fun getWeatherInfo(lat: Long, lon: Long): MutableLiveData<Resource<WeatherInfo>>
+    fun getWeatherInfo(lat: Double, lon: Double): MutableLiveData<Resource<WeatherInfo>>
     fun getCityId(cityName: String): MutableLiveData<String>
 }

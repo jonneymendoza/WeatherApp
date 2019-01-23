@@ -19,7 +19,7 @@ class WeatherViewModel constructor(
         return getCurrentLocationUseCase.getLocation()
     }
 
-    fun fetchCurrentWeather(lat: Long, lon: Long): MutableLiveData<Resource<WeatherInfo>> {
+    fun fetchCurrentWeather(lat: Double, lon: Double): MutableLiveData<Resource<WeatherInfo>> {
         weatherInfo = getWeatherInfoUseCase.getWeatherInfo(lat, lon)
         return weatherInfo
     }

@@ -16,16 +16,23 @@ class LocationProviderImpl constructor(val context: Context) : LocationProvider 
 
     override fun getLocation(): MutableLiveData<UserLocation> {
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(context)
-        locationLiveData.postValue(UserLocation(null, LocationState.PENDING, null))
+        locationLiveData.postValue(UserLocation(0.0, 0.0, LocationState.PENDING, null))
 
         try {
             fusedLocationProviderClient.lastLocation.addOnSuccessListener { location: Location? ->
-                locationLiveData.postValue(UserLocation(location, LocationState.SUCCESS, null))
+                locationLiveData.postValue(
+                    UserLocation(
+                        location!!.latitude,
+                        location!!.longitude,
+                        LocationState.SUCCESS,
+                        null
+                    )
+                )
             }
 
         } catch (e: SecurityException) {
             e.printStackTrace()
-            locationLiveData.postValue(UserLocation(null, LocationState.ERROR, "Permissions not set"))
+            locationLiveData.postValue(UserLocation(0.0, 0.0, LocationState.ERROR, "Permissions not set"))
         }
         return locationLiveData
 

@@ -1,5 +1,3 @@
 package com.richards.jonathan.weatherapp.data
 
-import android.location.Location
-
-data class UserLocation(var location: Location?, var state: LocationState, var errorMessages: String?)
+data class UserLocation(var lat: Double, var lon: Double, var state: LocationState, var errorMessages: String?)

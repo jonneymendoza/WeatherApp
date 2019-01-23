@@ -33,7 +33,7 @@ class WeatherRepositoryImpl constructor(private val networkController: NetworkCo
         return cityId
     }
 
-    override fun getWeatherInfo(lat: Long, lon: Long): MutableLiveData<Resource<WeatherInfo>> {
+    override fun getWeatherInfo(lat: Double, lon: Double): MutableLiveData<Resource<WeatherInfo>> {
         return SingleCallHandler<WeatherInfo>().makeCall(networkController.getWeather(lat, lon))
     }
 

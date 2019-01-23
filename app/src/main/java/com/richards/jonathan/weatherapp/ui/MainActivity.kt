@@ -43,13 +43,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        val currentFragment = supportFragmentManager.findFragmentById(R.id.fragment_content)
-
-        if (currentFragment is LoadingFragment) {
-            finish()
-        } else {
-            supportFragmentManager.popBackStack()
-        }
+        finish()
 
     }
 }

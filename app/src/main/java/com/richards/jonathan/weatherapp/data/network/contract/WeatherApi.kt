@@ -16,8 +16,8 @@ interface WeatherApi {
 
     @GET("weather")
     fun getWeather(
-        @Query(PARAM_LAT) lat: Long,
-        @Query(PARAM_LON) lon: Long,
+        @Query(PARAM_LAT) lat: Double,
+        @Query(PARAM_LON) lon: Double,
         @Query(PARAM_API_KEY) appid: String
     ): Deferred<Response<WeatherInfo>>
 

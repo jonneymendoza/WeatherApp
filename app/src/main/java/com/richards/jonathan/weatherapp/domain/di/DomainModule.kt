@@ -15,6 +15,6 @@ object DomainModule {
         factory<LocationProvider> { LocationProviderImpl(androidApplication()) }
         factory { GetCurrentLocationUseCase(get()) }
         factory { GetWeatherInfoUseCase(get()) }
-        factory<WeatherRepository> { WeatherRepositoryImpl(androidApplication(), get()) }
+        factory<WeatherRepository> { WeatherRepositoryImpl(get()) }
     }
 }

@@ -25,12 +25,14 @@ class CurrentWeatherFragment : BaseFragment() {
                 descriptionText.text = resource.data.weather[0].description
                 temperatureText.text = String.format("%.2f c", (resource.data.main.temp.toFloat() - 273.15f))
 
+                place.text = "Location: " + resource.data.name
                 //just show whether its cloudy raining snow or clear
                 when (resource.data.weather[0].main) {
                     "Clouds" -> weatherIcon.setImageResource(R.drawable.icons_partly_cloudy_day)
                     "Rain" -> weatherIcon.setImageResource(R.drawable.icons_rain)
                     "Snow" -> weatherIcon.setImageResource(R.drawable.icons_snow)
                     "Clear" -> weatherIcon.setImageResource(R.drawable.icons_sun)
+                    else -> weatherIcon.setImageResource(R.drawable.cloud)
                 }
             }
         })

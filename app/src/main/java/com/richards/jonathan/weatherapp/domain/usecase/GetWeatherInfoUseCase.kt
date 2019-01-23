@@ -7,7 +7,7 @@ import com.richards.jonathan.weatherapp.domain.WeatherRepository
 
 class GetWeatherInfoUseCase constructor(private val weatherRepository: WeatherRepository) {
 
-    fun getWeatherInfo(lat: Long, lon: Long): MutableLiveData<Resource<WeatherInfo>> {
+    fun getWeatherInfo(lat: Double, lon: Double): MutableLiveData<Resource<WeatherInfo>> {
         return weatherRepository.getWeatherInfo(lat,lon)
     }
 }
